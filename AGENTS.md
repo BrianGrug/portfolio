@@ -1,13 +1,14 @@
 # AGENTS.md
 
-TanStack Start (React 19, SSR) portfolio app. Bun + Vite + Tailwind v4. Deployed as a Nitro Node server.
+TanStack Start (React 19, SSR) portfolio app. Bun + Vite + Tailwind v4. Served in production by a custom Bun server (`server.ts`).
 
 ## Commands
 
 Bun is the package manager and runtime. Scripts are run with the `--bun` flag (uses Bun, not Node):
 
 - `bun --bun run dev` — dev server on port 3000
-- `bun --bun run build` — production build (Nitro output in `.output/`)
+- `bun --bun run build` — production build (client in `dist/client`, SSR handler in `dist/server/server.js`)
+- `bun --bun run start` — run the production Bun server (`server.ts`); requires a prior `build`
 - `bun --bun run test` — Vitest (jsdom). Single file: `bun --bun vitest run path/to/file`
 - `bun --bun run lint` — ESLint. `bun --bun run format` runs prettier --write then eslint --fix
 - `bun --bun run check` — prettier --check ONLY (does not typecheck or lint)
@@ -28,6 +29,7 @@ Two aliases both map to `src/`: `@/*` and `#/*` (see tsconfig + package.json `im
 ## Components
 
 shadcn-based. `components.json` defines two sources:
+
 - `src/components/ui/` — shadcn (style `radix-nova`, base color neutral)
 - `src/components/retroui/` — components from the `@retroui` registry (https://retroui.dev)
 
@@ -40,6 +42,6 @@ ESLint extends `@tanstack/eslint-config` with these rules disabled: `import/no-c
 
 ## Notes
 
-- `nitro` is pinned to `nitro-nightly`; Vite externalizes `@sentry/*` in the Nitro rollup config.
+- Production is served by `server.ts`, the TanStack `start-bun` reference server (Bun-native static asset preloading, gzip, ETag). It serves `dist/client` and imports the SSR handler from `dist/server/server.js`. Do NOT re-add the `nitro/vite` plugin — Nitro treats the root `server.ts` as its own server entry and the build fails with `[MISSING_EXPORT] "default" is not exported by "server.ts"`.
 - Many `@tanstack/*` deps use `latest` — versions can drift between installs.
 - `demo`-prefixed files (if present) are starter scaffolding and safe to delete.
