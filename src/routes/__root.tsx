@@ -36,6 +36,23 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         href: appCss,
       },
     ],
+    scripts: import.meta.env.PROD
+      ? [
+          {
+            src: 'https://click.grug.dev/script.js',
+            defer: true,
+            'data-website-id': import.meta.env.VITE_UMAMI_WEBSITE_ID,
+          },
+          {
+            src: 'https://click.grug.dev/recorder.js',
+            defer: true,
+            'data-website-id': import.meta.env.VITE_UMAMI_WEBSITE_ID,
+            'data-sample-rate': '0.15',
+            'data-mask-level': 'moderate',
+            'data-max-duration': '300000',
+          },
+        ]
+      : [],
   }),
   shellComponent: RootDocument,
 })
