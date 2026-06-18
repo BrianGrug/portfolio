@@ -3,19 +3,19 @@ import {
   Scripts,
   createRootRouteWithContext,
   useRouterState,
-} from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+} from '@tanstack/react-router';
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
+import { TanStackDevtools } from '@tanstack/react-devtools';
 
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
+import TanStackQueryDevtools from '../integrations/tanstack-query/devtools';
 
-import appCss from '../styles.css?url'
+import appCss from '../styles.css?url';
 
-import type { QueryClient } from '@tanstack/react-query'
-import { useEffect } from 'react'
+import type { QueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 interface MyRouterContext {
-  queryClient: QueryClient
+  queryClient: QueryClient;
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
@@ -46,32 +46,35 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
             'data-website-id': import.meta.env.VITE_UMAMI_WEBSITE_ID,
             'data-performance': import.meta.env.VITE_UMAMI_PERFORMANCE_TRACKING,
           },
-        {
-          src: `${import.meta.env.VITE_UMAMI_WEBSITE_URL}/recorder.js`,
-          defer: true,
-          'data-website-id': import.meta.env.VITE_UMAMI_WEBSITE_ID,
-          'data-sample-rate': '0.15',
-          'data-mask-level': 'moderate',
-          'data-max-duration': '300000',
-        },
-      ]
+          {
+            src: `${import.meta.env.VITE_UMAMI_WEBSITE_URL}/recorder.js`,
+            defer: true,
+            'data-website-id': import.meta.env.VITE_UMAMI_WEBSITE_ID,
+            'data-sample-rate': '0.15',
+            'data-mask-level': 'moderate',
+            'data-max-duration': '300000',
+          },
+        ]
       : [],
   }),
   shellComponent: RootDocument,
-})
+});
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  //A little messy but used to auto add tags to outbound links
+  // A little messy but used to auto add tags to outbound links
   useEffect(() => {
     document.querySelectorAll('a').forEach((a) => {
-      if (a.host !== window.location.host && !a.getAttribute('data-umami-event')) {
-        a.setAttribute('data-umami-event', 'outbound-link-click')
-        a.setAttribute('data-umami-event-url', a.href)
+      if (
+        a.host !== window.location.host &&
+        !a.getAttribute('data-umami-event')
+      ) {
+        a.setAttribute('data-umami-event', 'outbound-link-click');
+        a.setAttribute('data-umami-event-url', a.href);
       }
-    })
-  }, [pathname])
+    });
+  }, [pathname]);
 
   return (
     <html lang="en">
@@ -95,5 +98,5 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  )
+  );
 }

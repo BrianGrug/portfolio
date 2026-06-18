@@ -1,0 +1,65 @@
+when:
+  - event: [push, pull_request, manual]
+
+steps:
+  - name: install
+    image: oven/bun:latest
+    commands:
+      - bun install --frozen-lockfile
+
+  - name: lint
+    image: oven/bun:latest
+    commands:
+      - bun run lint
+    depends_on: [install]
+
+  - name: check
+    image: oven/bun:latest
+    commands:
+      - bun run check
+    depends_on: [install]
+
+  - name: typecheck
+    image: oven/bun:latest
+    commands:
+      - bunx tsc --noEmit
+    depends_on: [install]
+
+  - name: publish
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      registry: docker.grug.dev
+      repo: docker.grug.dev/portfolio
+      dockerfile: Dockerfile
+      platforms: linux/amd64
+      tags:
+        - latest
+        - ${CI_COMMIT_SHA}
+      username:
+        from_secret: registry_username
+      password:
+        from_secret: registry_password
+    depends_on: [lint, check, typecheck]
+    when:
+      - event: push
+        branch: main
+
+  - name: deploy
+    image: curlimages/curl
+    environment:
+      DOKPLOY_API_KEY:
+        from_secret: dokploy_api_key
+      DOKPLOY_COMPOSE_ID:
+        from_secret: dokploy_compose_id
+    commands:
+      - |
+        curl -fsS -X POST \
+          'https://dokploy.grug.dev/api/compose.deploy' \
+          -H 'accept: application/json' \
+          -H "x-api-key: $DOKPLOY_API_KEY" \
+          -H 'Content-Type: application/json' \
+          -d "{\"composeId\": \"$DOKPLOY_COMPOSE_ID\"}"
+    depends_on: [publish]
+    when:
+      - event: push
+        branch: main

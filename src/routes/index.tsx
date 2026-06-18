@@ -1,38 +1,48 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Button } from "@/components/retroui/Button";
-import { Text } from "@/components/retroui/Text";
+import { createFileRoute } from '@tanstack/react-router';
+import { Button } from '@/components/retroui/Button';
+import { Text } from '@/components/retroui/Text';
 import { Table } from '@/components/retroui/Table';
 import { Stats } from '@/components/Stats';
 import { Card } from '@/components/retroui/Card';
 import { cn } from '#/lib/utils';
 
-export const Route = createFileRoute('/')({ component: Home })
+export const Route = createFileRoute('/')({ component: Home });
 
 const services = [
   {
-    title: "Technical Consulting",
-    description: "Figure out your needs for your business or project to succeed while being cost-effective.",
+    title: 'Technical Consulting',
+    description:
+      'Figure out your needs for your business or project to succeed while being cost-effective.',
   },
   {
-    title: "Web Development",
-    description: "Fast, modern, accessible web apps from the database to the pixels.",
+    title: 'Web Development',
+    description:
+      'Fast, modern, accessible web apps from the database to the pixels.',
   },
   {
-    title: "App & Mobile",
-    description: "Cross-platform applications that feel native and ship quickly.",
+    title: 'App & Mobile',
+    description:
+      'Cross-platform applications that feel native and ship quickly.',
   },
   {
-    title: "System & Network Administration",
-    description: "Server setup, configuration, and maintenance.",
+    title: 'System & Network Administration',
+    description: 'Server setup, configuration, and maintenance.',
   },
 ];
 
 const skills = [
-  { area: "Frontend", tools: "React, TanStack, TypeScript, Tailwind" },
-  { area: "Backend", tools: "Java, Node, NoSQL, SQL, REST, GraphQL, gRPC" },
-  { area: "Infrastructure", tools: "Docker, k8, Linux, Windows Server, GCP, AWS" },
-  { area: "Mobile", tools: "Capacitor, Expo, React Native, Tauri" },
-  { area: "Hardware", tools: "Firewalla, PowerEdge, Raspberry Pi, Arduino, ESP32-*, learning Ubiquiti" },
+  { area: 'Frontend', tools: 'React, TanStack, TypeScript, Tailwind' },
+  { area: 'Backend', tools: 'Java, Node, NoSQL, SQL, REST, GraphQL, gRPC' },
+  {
+    area: 'Infrastructure',
+    tools: 'Docker, k8, Linux, Windows Server, GCP, AWS',
+  },
+  { area: 'Mobile', tools: 'Capacitor, Expo, React Native, Tauri' },
+  {
+    area: 'Hardware',
+    tools:
+      'Firewalla, PowerEdge, Raspberry Pi, Arduino, ESP32-*, learning Ubiquiti',
+  },
 ];
 
 const ContactButton = ({
@@ -40,12 +50,18 @@ const ContactButton = ({
   variant,
 }: {
   className?: string;
-  variant?: "default" | "secondary" | "outline" | "link" | "ghost";
+  variant?: 'default' | 'secondary' | 'outline' | 'link' | 'ghost';
 }) => {
-  return (<Button variant={variant} onClick={() => window.open('mailto:brian@grug.dev')} className={cn(className)}>
-    Contact Me
-  </Button>)
-}
+  return (
+    <Button
+      variant={variant}
+      onClick={() => window.open('mailto:brian@grug.dev')}
+      className={cn(className)}
+    >
+      Contact Me
+    </Button>
+  );
+};
 
 const SectionHeading = ({
   eyebrow,
@@ -61,7 +77,9 @@ const SectionHeading = ({
       <span className="font-head text-xs uppercase tracking-widest text-muted-foreground">
         {eyebrow}
       </span>
-      <Text as="h2" className="mt-2">{title}</Text>
+      <Text as="h2" className="mt-2">
+        {title}
+      </Text>
       <div className="mx-auto mt-4 h-1.5 w-16 border-2 border-black bg-primary" />
       {description && (
         <Text as="p" className="mx-auto mt-4 max-w-xl text-muted-foreground">
@@ -81,19 +99,25 @@ function Home() {
             <span className="h-2 w-2 rounded-full bg-green-500" />
             Taking Commissions
           </span>
-          <Text as="h1" className="mt-5">HI I'M GRUG</Text>
-          <Text as="p" className="py-4 break-words max-w-xl text-muted-foreground">
-            But most people call me Brian. I like planes, trains and automobiles. More than that, 
-            I love rockets, and space. My dream is to help secure humanity's future in the stars.
+          <Text as="h1" className="mt-5">
+            HI I'M GRUG
+          </Text>
+          <Text
+            as="p"
+            className="py-4 break-words max-w-xl text-muted-foreground"
+          >
+            But most people call me Brian. I like planes, trains and
+            automobiles. More than that, I love rockets, and space. My dream is
+            to help secure humanity's future in the stars.
           </Text>
           <div className="mt-2 flex flex-wrap justify-center gap-3 lg:justify-start">
             <ContactButton />
             <Button
               variant="secondary"
               onClick={() => {
-                const section = document.getElementById("services");
+                const section = document.getElementById('services');
                 if (section) {
-                  section.scrollIntoView({ behavior: "smooth" });
+                  section.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
             >
@@ -107,13 +131,17 @@ function Home() {
             <Card.Content className="flex aspect-square flex-col p-8">
               <div className="flex items-start justify-between font-head">
                 <span className="text-3xl leading-none">5</span>
-                <span className="text-xs uppercase tracking-widest">10.811</span>
+                <span className="text-xs uppercase tracking-widest">
+                  10.811
+                </span>
               </div>
               <span className="flex-1 text-center font-head text-[9rem] leading-none flex items-center justify-center">
                 B
               </span>
               <div className="text-center">
-                <p className="font-head text-2xl uppercase tracking-wide">Brian</p>
+                <p className="font-head text-2xl uppercase tracking-wide">
+                  Brian
+                </p>
                 <p className="mt-1 font-head text-xs uppercase tracking-widest">
                   Full-Stack Developer
                 </p>
@@ -126,9 +154,9 @@ function Home() {
       <section className="mt-16 flex justify-center">
         <Stats
           stats={[
-            { value: "8+", label: "Years Coding" },
-            { value: "50+", label: "Projects Completed" },
-            { value: "∞", label: "Side projects" },
+            { value: '8+', label: 'Years Coding' },
+            { value: '50+', label: 'Projects Completed' },
+            { value: '∞', label: 'Side projects' },
           ]}
         />
       </section>
@@ -180,7 +208,9 @@ function Home() {
             <span className="font-head text-xs uppercase tracking-widest">
               Get In Touch
             </span>
-            <Text as="h2" className="mt-2">Let's Build Something</Text>
+            <Text as="h2" className="mt-2">
+              Let's Build Something
+            </Text>
             <Text as="p" className="mt-2 mb-6">
               Have a project in mind? I'd love to hear about it.
             </Text>
@@ -189,5 +219,5 @@ function Home() {
         </Card>
       </section>
     </div>
-  )
+  );
 }

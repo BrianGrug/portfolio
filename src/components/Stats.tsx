@@ -1,5 +1,5 @@
-import { Card } from "@/components/retroui/Card";
-import { Text } from "@/components/retroui/Text";
+import { Card } from '@/components/retroui/Card';
+import { Text } from '@/components/retroui/Text';
 
 interface Stat {
   value: string;

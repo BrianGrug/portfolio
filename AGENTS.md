@@ -37,7 +37,7 @@ UI primitives use `@base-ui/react` and `radix-ui`; icons use `lucide-react`. Com
 
 ## Style
 
-Prettier: no semicolons, single quotes, trailing commas `all`. Match this in all new code.
+Prettier: single quotes, trailing commas `all`. Match this in all new code.
 ESLint extends `@tanstack/eslint-config` with these rules disabled: `import/no-cycle`, `import/order`, `sort-imports`, `@typescript-eslint/array-type`, `@typescript-eslint/require-await`, `pnpm/json-enforce-catalog`.
 
 ## Notes
