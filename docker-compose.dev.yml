@@ -1,8 +1,15 @@
 services:
   portfolio:
     image: docker.grug.dev/portfolio:latest
+    build:
+      context: .
+      args:
+        VITE_UMAMI_WEBSITE_ID: ${VITE_UMAMI_WEBSITE_ID:-}
+        PORT: ${PORT:-3000}
     env_file:
       - .env
+    environment:
+      PORT: ${PORT:-3000}
     ports:
       - "${PORT:-3000}:${PORT:-3000}"
     restart: unless-stopped
