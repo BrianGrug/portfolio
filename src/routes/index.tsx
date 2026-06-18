@@ -79,7 +79,7 @@ function Home() {
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <span className="inline-flex items-center gap-2 border-2 border-black bg-card px-3 py-1 text-xs font-head uppercase tracking-widest shadow-sm">
             <span className="h-2 w-2 rounded-full bg-green-500" />
-            Looking for projects
+            Taking Commissions
           </span>
           <Text as="h1" className="mt-5">HI I'M GRUG</Text>
           <Text as="p" className="py-4 break-words max-w-xl text-muted-foreground">
