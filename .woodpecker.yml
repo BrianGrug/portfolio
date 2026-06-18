@@ -42,7 +42,7 @@ steps:
     depends_on: [lint, check, typecheck]
     when:
       - event: push
-        branch: main
+        branch: master
 
   - name: deploy
     image: curlimages/curl
@@ -62,4 +62,4 @@ steps:
     depends_on: [publish]
     when:
       - event: push
-        branch: main
+        branch: master
