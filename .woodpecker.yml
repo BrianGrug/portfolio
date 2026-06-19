@@ -39,7 +39,7 @@ steps:
         from_secret: registry_username
       password:
         from_secret: registry_password
-      environment:
+      build_args:
         VITE_UMAMI_WEBSITE_ID:
           from_secret: vite_umami_website_id
         VITE_UMAMI_WEBSITE_URL:
@@ -48,11 +48,6 @@ steps:
           from_secret: vite_umami_performance_tracking
         VITE_TURNSTILE_SITE_KEY:
           from_secret: vite_turnstile_site_key
-      build_args_from_env:
-        - VITE_UMAMI_WEBSITE_ID
-        - VITE_UMAMI_WEBSITE_URL
-        - VITE_UMAMI_PERFORMANCE_TRACKING
-        - VITE_TURNSTILE_SITE_KEY
     depends_on: [lint, check, typecheck]
     when:
       - event: push
