@@ -57,6 +57,7 @@ steps:
     when:
       - event: push
         branch: master
+      - event: manual
 
   - name: deploy
     image: curlimages/curl
@@ -77,3 +78,4 @@ steps:
     when:
       - event: push
         branch: master
+      - event: manual
