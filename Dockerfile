@@ -6,9 +6,15 @@ RUN bun install --frozen-lockfile
 
 COPY . .
 
-# Umami analytics ID is inlined into the bundle at build time (public value)
+# VITE_* values are inlined into the client bundle at build time (public values)
 ARG VITE_UMAMI_WEBSITE_ID
 ENV VITE_UMAMI_WEBSITE_ID=$VITE_UMAMI_WEBSITE_ID
+ARG VITE_UMAMI_WEBSITE_URL
+ENV VITE_UMAMI_WEBSITE_URL=$VITE_UMAMI_WEBSITE_URL
+ARG VITE_UMAMI_PERFORMANCE_TRACKING
+ENV VITE_UMAMI_PERFORMANCE_TRACKING=$VITE_UMAMI_PERFORMANCE_TRACKING
+ARG VITE_TURNSTILE_SITE_KEY
+ENV VITE_TURNSTILE_SITE_KEY=$VITE_TURNSTILE_SITE_KEY
 RUN bun --bun run build
 
 FROM oven/bun:1-slim AS production

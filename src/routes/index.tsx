@@ -4,7 +4,8 @@ import { Text } from '@/components/retroui/Text';
 import { Table } from '@/components/retroui/Table';
 import { Stats } from '@/components/Stats';
 import { Card } from '@/components/retroui/Card';
-import { cn } from '#/lib/utils';
+import { useState } from 'react';
+import SendEmailDialog from '@/components/SendEmailDialog';
 
 export const Route = createFileRoute('/')({ component: Home });
 
@@ -45,25 +46,6 @@ const skills = [
   },
 ];
 
-const ContactButton = ({
-  className,
-  variant,
-}: {
-  className?: string;
-  variant?: 'default' | 'secondary' | 'outline' | 'link' | 'ghost';
-}) => {
-  return (
-    <Button
-      variant={variant}
-      onClick={() => window.open('mailto:brian@grug.dev')}
-      className={cn(className)}
-    >
-      Contact Me
-    </Button>
-  );
-};
-
-// Test for CI CD
 const SectionHeading = ({
   eyebrow,
   title,
@@ -92,6 +74,8 @@ const SectionHeading = ({
 };
 
 function Home() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <div className="mx-auto max-w-5xl px-4 pb-24">
       <section className="mt-20 grid items-center gap-12 lg:mt-28 lg:grid-cols-2">
@@ -112,7 +96,7 @@ function Home() {
             to help secure humanity's future in the stars.
           </Text>
           <div className="mt-2 flex flex-wrap justify-center gap-3 lg:justify-start">
-            <ContactButton />
+            <Button onClick={() => setContactOpen(true)}>Contact Me</Button>
             <Button
               variant="secondary"
               onClick={() => {
@@ -215,10 +199,18 @@ function Home() {
             <Text as="p" className="mt-2 mb-6">
               Have a project in mind? I'd love to hear about it.
             </Text>
-            <ContactButton variant="secondary" className="w-full" />
+            <Button
+              variant="secondary"
+              className="w-full"
+              onClick={() => setContactOpen(true)}
+            >
+              Contact Me
+            </Button>
           </Card.Content>
         </Card>
       </section>
+
+      <SendEmailDialog open={contactOpen} onOpenChange={setContactOpen} />
     </div>
   );
 }
