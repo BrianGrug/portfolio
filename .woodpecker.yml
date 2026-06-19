@@ -27,15 +27,6 @@ steps:
 
   - name: publish
     image: woodpeckerci/plugin-docker-buildx
-    environment:
-      VITE_UMAMI_WEBSITE_ID:
-        from_secret: vite_umami_website_id
-      VITE_UMAMI_WEBSITE_URL:
-        from_secret: vite_umami_website_url
-      VITE_UMAMI_PERFORMANCE_TRACKING:
-        from_secret: vite_umami_performance_tracking
-      VITE_TURNSTILE_SITE_KEY:
-        from_secret: vite_turnstile_site_key
     settings:
       registry: docker.grug.dev
       repo: docker.grug.dev/portfolio
@@ -48,6 +39,15 @@ steps:
         from_secret: registry_username
       password:
         from_secret: registry_password
+      environment:
+        VITE_UMAMI_WEBSITE_ID:
+          from_secret: vite_umami_website_id
+        VITE_UMAMI_WEBSITE_URL:
+          from_secret: vite_umami_website_url
+        VITE_UMAMI_PERFORMANCE_TRACKING:
+          from_secret: vite_umami_performance_tracking
+        VITE_TURNSTILE_SITE_KEY:
+          from_secret: vite_turnstile_site_key
       build_args_from_env:
         - VITE_UMAMI_WEBSITE_ID
         - VITE_UMAMI_WEBSITE_URL
