@@ -1,6 +1,7 @@
 services:
   portfolio:
     image: docker.grug.dev/portfolio:latest
+    pull_policy: always
     env_file:
       - .env
     ports:
