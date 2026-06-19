@@ -2,10 +2,10 @@
 
 import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import { cn } from '@/lib/utils';
-import { cva  } from 'class-variance-authority';
-import type {VariantProps} from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
+import type { VariantProps } from 'class-variance-authority';
 import React from 'react';
-import type {HTMLAttributes, ReactNode} from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import { X } from 'lucide-react';
 
 const Dialog = BaseDialog.Root;
