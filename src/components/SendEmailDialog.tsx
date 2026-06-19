@@ -37,7 +37,7 @@ export default function SendEmailDialog({
           subject: 'New Inquiry - ' + new Date().toLocaleDateString(),
         },
       }),
-    onSuccess: (data) => {
+    onSuccess: () => {
       form.reset();
       onOpenChange(false);
     },
