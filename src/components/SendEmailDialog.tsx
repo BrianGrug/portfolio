@@ -159,6 +159,7 @@ export default function SendEmailDialog({
             {({ canSubmit, isSubmitting }) => (
               <Button
                 type="submit"
+                data-umami-event="Send Email Button Clicked"
                 form="send-email-form"
                 disabled={!token || !canSubmit || isSubmitting || isPending}
               >

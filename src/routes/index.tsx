@@ -96,9 +96,15 @@ function Home() {
             to help secure humanity's future in the stars.
           </Text>
           <div className="mt-2 flex flex-wrap justify-center gap-3 lg:justify-start">
-            <Button onClick={() => setContactOpen(true)}>Contact Me</Button>
+            <Button
+              data-umami-event="Contact Button Clicked"
+              onClick={() => setContactOpen(true)}
+            >
+              Contact Me
+            </Button>
             <Button
               variant="secondary"
+              data-umami-event="Keep Reading Button Clicked"
               onClick={() => {
                 const section = document.getElementById('services');
                 if (section) {
@@ -201,6 +207,7 @@ function Home() {
             </Text>
             <Button
               variant="secondary"
+              data-umami-event="Bottom Contact Button Clicked"
               className="w-full"
               onClick={() => setContactOpen(true)}
             >
