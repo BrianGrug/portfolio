@@ -45,6 +45,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
             defer: true,
             'data-website-id': import.meta.env.VITE_UMAMI_WEBSITE_ID,
             'data-do-not-track': import.meta.env.VITE_UMAMI_DO_NOT_TRACK,
+            'data-performance': import.meta.env.VITE_UMAMI_PERFORMANCE_TRACKING,
           },
           {
             src: `${import.meta.env.VITE_UMAMI_WEBSITE_URL}/recorder.js`,
