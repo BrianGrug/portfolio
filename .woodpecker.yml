@@ -71,4 +71,5 @@ steps:
     depends_on: [publish]
     when:
       - event: tag
+        ref: refs/tags/v*
       - event: manual
